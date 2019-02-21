@@ -1,0 +1,11 @@
+bin/
+obj/
+Bin/
+Obj/
+/v15/
+
+
+
+#Frontend
+node_modules*/
+npm-debug.log

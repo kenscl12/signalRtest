@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+	<div id="messages"></div>
+
+	<script type="text/javascript" src="js/signalr.min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript">
+		function setMessages(data) {
+			if (!data) {
+				return;
+			}
+			var container = $("#messages");
+			container.empty();
+			$.each(data, function (key, value) {
+				container.append("<p>" + value + "</p>");
+			});
+		}
+
+		var hubConnection = new signalR.HubConnectionBuilder()
+			.withUrl("http://localhost:56033/messages")
+			.build();
+
+		hubConnection.on("Send", setMessages);
+
+		hubConnection.start();
+	</script>
+</body>
+</html>
